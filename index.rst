@@ -3,11 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Empty Sphinx Project
-====================
+FVCOM Interface
+===============
 
-This is an empty sphinx project that can be used to document anything.
-
+This collection documents the Finite Volume Community Ocean Model (FVCOM)
+interface to the Data Assimilation Research Testbed (DART).
 
 .. toctree::
    :maxdepth: 2
@@ -21,5 +21,5 @@ This is an empty sphinx project that can be used to document anything.
    :hidden:
    :caption: CESM
 
-   /cesm/building
+   /fvcom/building
 

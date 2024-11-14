@@ -17,8 +17,8 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Insert Title Here'
-copyright = '2021, UCAR'
+project = 'FVCOM Interface to DART'
+copyright = '2024, UCAR'
 author = 'Ben Johnson'
 
 # The full version, including alpha/beta/rc tags
