@@ -19,7 +19,7 @@ interface to the Data Assimilation Research Testbed (DART).
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: CESM
+   :caption: FVCOM
 
    /fvcom/building
 
