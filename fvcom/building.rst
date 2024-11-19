@@ -9,11 +9,6 @@ The FVCOM source code is `available in a repository on Github.com
 
    git clone https://github.com/FVCOM-GitHub/FVCOM.git
    cd FVCOM/src
-   vim make.inc
-
-   TOPDIR        = /Users/$(USER)/work/git/FVCOM/src
-   IOINCS       =  -I/opt/local/include
-   IOLIBS       =  -L/opt/local/lib  -lnetcdff -lnetcdf
 
 Installing dependencies using MacPorts
 ======================================
@@ -93,6 +88,53 @@ the ``tconvert`` Fortran executable using ``gfortran``.
         gfortran tconvert.o -L/opt/local/julian_133 -ljulian -o tconvert
         ld: library not found for -ljulian
         collect2: error: ld returned 1 exit status
+
+Trying to compile FVCOM
+=======================
+
+Regardless, the static library ``julian.a`` seemed to compile alright. Can I 
+link it to FVCOM and compile it?
+
+.. code-block::
+
+   vim make.inc
+
+   TOPDIR       = /Users/$(USER)/work/git/FVCOM/src
+   IOINCS       =  -I/opt/local/include -I/opt/local/julian_133
+   IOLIBS       =  -L/opt/local/lib -lnetcdff -lnetcdf -L/opt/local/julian_133 -ljulian
+
+The edit to ``make.inc`` adds the paths to the location FVCOM is installed and
+the lib and include directories. There are two sets of lib and include
+directories. The ``/opt/local/lib`` and ``/opt/local/include`` directories are 
+where the MacPorts-installed dependencies are located. The
+``/opt/local/julian_133`` directory is where Julian is installed.
+
+However, the `compile attempt <using the FVCOM installation instructions 
+https://github.com/FVCOM-GitHub/FVCOM>`_ is unsuccessful.
+
+.. code-block::
+
+   make clean
+   make
+
+.. error::
+
+   .. code-block::
+
+      mpif90  -c  -O3  -I/opt/local/include -I/opt/local/julian_133        mod_time.f90
+      fjulian.inc:1:1:
+      Error: Unclassifiable statement at (1)
+      fjulian.inc:18:57:
+      [ ... ]
+      mod_time.f90:663:21:
+      663 |      mjd%mjd = ANINT(FJul_MJDofTAI(tai, FJUL_UTC_TYPE),itime)
+          |                     1
+      Error: Function 'fjul_mjdoftai' at (1) has no IMPLICIT type; did you mean 'fjul_taiofdutc'?
+      mod_time.f90:695:12:
+      695 |      tai  = FJul_TAIofMJD(rMJD, FJUL_UTC_TYPE)
+          |            1
+      Error: Function 'fjul_taiofmjd' at (1) has no IMPLICIT type; did you mean 'fjul_dutcoftai'?
+      make: *** [mod_time.o] Error 1
 
 Guidance from Gemini
 ====================
