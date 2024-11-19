@@ -10,6 +10,12 @@ The FVCOM source code is `available in a repository on Github.com
    git clone https://github.com/FVCOM-GitHub/FVCOM.git
    cd FVCOM/src
 
+.. note::
+
+   In the FVCOM README, there is a `link to a zip file
+   <https://drive.google.com/file/d/1xwcFjzkSNT26FBu83pq2I8oIGzPqnjUn/view>`_
+   with test cases, libraries and processing tools.
+
 Installing dependencies using MacPorts
 ======================================
 
